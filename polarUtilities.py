@@ -4,6 +4,8 @@ r, theta = sp.symbols('r, theta')
 
 f = sp.Function('f')(r,theta)
 
+E, nu = sp.symbols('E, nu')
+
 
 def delr_delx():
     return sp.cos(theta)
@@ -72,3 +74,13 @@ def sigma_rt(f):
 
 def sigma_tr(f):
     return (sigma_polar(f)[1,0]).simplify().expand()
+
+
+def epsilon_rr(sigma_rr, sigma_tt):
+    return (1/E)*(sigma_rr-nu*sigma_tt).simplify()
+
+def epsilon_tt(sigma_tt, sigma_rr):
+    return (1/E)*(sigma_tt-nu*sigma_rr).simplify()
+
+def epsilon_rt(sigma_rt):
+    return ((1+nu)/E)*sigma_rt.simplify()
